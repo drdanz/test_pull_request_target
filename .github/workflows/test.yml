@@ -4,14 +4,21 @@ on:
   pull_request:
 
 jobs:
-
-  print_environment:
-    name: 'Print Environment'
+  print_info:
+    name: 'Print useful information'
     runs-on: ubuntu-20.04
     steps:
-    - name: "Set output variables"
-      id: select
+    - name: "Print Environment"
       run: |
         echo "::group::env"
         env
+        echo "::endgroup::"
+    - name: "Install tools"
+      run: |
+        sudo apt-get update -qq
+        sudo apt-get install -qq -y jq
+    - name: "Print event"
+      run: |
+        echo "::group::GITHUB_EVENT_PATH"
+        cat $GITHUB_EVENT_PATH | jq -C
         echo "::endgroup::"
