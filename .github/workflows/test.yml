@@ -1,0 +1,17 @@
+on:
+  push:
+  pull_request_target:
+  pull_request:
+
+jobs:
+
+  print_environment:
+    name: 'Print Environment'
+    runs-on: ubuntu-20.04
+    steps:
+    - name: "Set output variables"
+      id: select
+      run: |
+        ::group::env
+        env
+        ::endgroup::
