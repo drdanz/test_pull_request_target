@@ -8,17 +8,65 @@ jobs:
     name: 'Print useful information'
     runs-on: ubuntu-20.04
     steps:
+
     - name: "Print Environment"
       run: |
         echo "::group::env"
         env
         echo "::endgroup::"
+
     - name: "Install tools"
       run: |
         sudo apt-get update -qq
         sudo apt-get install -qq -y jq
+
     - name: "Print event"
       run: |
         echo "::group::GITHUB_EVENT_PATH"
         cat $GITHUB_EVENT_PATH | jq -C
+        echo "::endgroup::"
+
+    - name: "Clone repository"
+      uses: actions/checkout@v2
+
+    - name: "Print HEAD"
+      run: |
+        echo "::group::git show HEAD"
+        git show HEAD
+        echo "::endgroup::"
+
+    - name: "Print GITHUB_REF"
+      run: |
+        echo "::group::GITHUB_REF"
+        echo $GITHUB_REF
+        echo "::endgroup::"
+
+        echo "::group::git show \$GITHUB_REF"
+        git show $GITHUB_REF
+        echo "::endgroup::"
+
+    - name: "Print GITHUB_SHA"
+      run: |
+        echo "::group::git show \$GITHUB_SHA"
+        git show $GITHUB_SHA
+        echo "::endgroup::"
+
+    - name: "Print github.event.pull_request.head.ref"
+      run: |
+        echo "::group::github.event.pull_request.head.ref"
+        echo ${{ github.event.pull_request.head.ref }}
+        echo "::endgroup::"
+
+        echo "::group::git show github.event.pull_request.head.ref"
+        git show ${{ github.event.pull_request.head.ref }}
+        echo "::endgroup::"
+
+    - name: "Print github.event.pull_request.head.sha"
+      run: |
+        echo "::group::github.event.pull_request.head.sha"
+        echo ${{ github.event.pull_request.head.sha }}
+        echo "::endgroup::"
+
+        echo "::group::git show github.event.pull_request.head.sha"
+        git show ${{ github.event.pull_request.head.sha }}
         echo "::endgroup::"
