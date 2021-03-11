@@ -92,38 +92,18 @@ jobs:
         git show HEAD
         echo "::endgroup::"
 
-    - name: "Print GITHUB_REF"
+    - name: "Print steps.select.outputs.ref"
       run: |
-        echo "::group::GITHUB_REF"
-        echo $GITHUB_REF
+        echo "::group::steps.select.outputs.ref"
+        echo ${{ steps.select.outputs.ref }}
         echo "::endgroup::"
 
-        echo "::group::git show \$GITHUB_REF"
-        git show $GITHUB_REF
+        echo "::group::git show steps.select.outputs.ref"
+        git show ${{ steps.select.outputs.ref }}
         echo "::endgroup::"
 
     - name: "Print GITHUB_SHA"
       run: |
-        echo "::group::git show \$GITHUB_SHA"
-        git show $GITHUB_SHA
-        echo "::endgroup::"
-
-    - name: "Print github.event.pull_request.head.ref"
-      run: |
-        echo "::group::github.event.pull_request.head.ref"
-        echo ${{ github.event.pull_request.head.ref }}
-        echo "::endgroup::"
-
-        echo "::group::git show github.event.pull_request.head.ref"
-        git show ${{ github.event.pull_request.head.ref }}
-        echo "::endgroup::"
-
-    - name: "Print github.event.pull_request.head.sha"
-      run: |
-        echo "::group::github.event.pull_request.head.sha"
-        echo ${{ github.event.pull_request.head.sha }}
-        echo "::endgroup::"
-
-        echo "::group::git show github.event.pull_request.head.sha"
-        git show ${{ github.event.pull_request.head.sha }}
+        echo "::group::git show steps.select.outputs.sha"
+        git show ${{ steps.select.outputs.sha }}
         echo "::endgroup::"
