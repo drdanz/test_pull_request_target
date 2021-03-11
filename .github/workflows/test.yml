@@ -12,6 +12,6 @@ jobs:
     - name: "Set output variables"
       id: select
       run: |
-        ::group::env
+        echo "::group::env"
         env
-        ::endgroup::
+        echo "::endgroup::"
