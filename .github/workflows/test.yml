@@ -86,24 +86,18 @@ jobs:
         repository: ${{ needs.select_environment.outputs.repository }}
         ref: ${{ needs.select_environment.outputs.ref }}
 
-    - name: "Print HEAD"
+    - name: "Print needs.select_environment.outputs.ref"
       run: |
-        echo "::group::git show HEAD"
-        git show HEAD
+        echo "::group::needs.select_environment.outputs.ref"
+        echo ${{ needs.select_environment.outputs.ref }}
         echo "::endgroup::"
 
-    - name: "Print steps.select.outputs.ref"
-      run: |
-        echo "::group::steps.select.outputs.ref"
-        echo ${{ steps.select.outputs.ref }}
+        echo "::group::git show needs.select_environment.outputs.ref"
+        git show ${{ needs.select_environment.outputs.ref }}
         echo "::endgroup::"
 
-        echo "::group::git show steps.select.outputs.ref"
-        git show ${{ steps.select.outputs.ref }}
-        echo "::endgroup::"
-
-    - name: "Print GITHUB_SHA"
+    - name: "Print needs.select_environment.outputs.sha"
       run: |
-        echo "::group::git show steps.select.outputs.sha"
-        git show ${{ steps.select.outputs.sha }}
+        echo "::group::git show needs.select_environment.outputs.sha"
+        git show ${{ needs.select_environment.outputs.sha }}
         echo "::endgroup::"
