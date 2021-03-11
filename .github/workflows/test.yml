@@ -59,6 +59,7 @@ jobs:
 
   print_info:
     name: 'Print useful information'
+    needs: select_environment
     runs-on: ubuntu-20.04
     steps:
 
