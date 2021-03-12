@@ -71,8 +71,8 @@ jobs:
 
     - name: "Modify Environment"
       run: |
-        echo "GITHUB_REF=${{ ${{ needs.select_environment.outputs.ref }} }}" >> $GITHUB_ENV
-        echo "GITHUB_SHA=${{ ${{ needs.select_environment.outputs.sha }} }}" >> $GITHUB_ENV
+        echo "GITHUB_REF=${{ needs.select_environment.outputs.ref }}" >> $GITHUB_ENV
+        echo "GITHUB_SHA=${{ needs.select_environment.outputs.sha }}" >> $GITHUB_ENV
 
     - name: "Print Environment Again"
       run: |
